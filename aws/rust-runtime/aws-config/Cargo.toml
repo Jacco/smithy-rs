@@ -17,7 +17,6 @@ environment = ["meta"]
 sts = ["aws-sdk-sts"]
 web-identity-token = ["sts", "profile"]
 http-provider = ["aws-smithy-json", "aws-smithy-http/rt-tokio", "tower", "tokio/sync"]
-tcp-connector = ["tokio/net", "tower"]
 
 # SSO is not supported
 sso = []
@@ -29,7 +28,7 @@ rt-tokio = ["aws-smithy-async/rt-tokio"]
 # Tokio based DNS-resolver for ECS validation
 dns = ["tokio/rt"]
 
-default = ["default-provider", "rustls", "rt-tokio", "dns", "tcp-connector"]
+default = ["default-provider", "rustls", "rt-tokio", "dns"]
 
 [dependencies]
 aws-sdk-sts = { path = "../../sdk/build/aws-sdk/sdk/sts", default-features = false, optional = true }
@@ -39,6 +38,7 @@ aws-smithy-types = { path = "../../sdk/build/aws-sdk/sdk/aws-smithy-types" }
 aws-types = { path = "../../sdk/build/aws-sdk/sdk/aws-types" }
 tokio = { version = "1", features = ["sync"], optional = true }
 tracing = { version = "0.1" }
+hyper = { version = "0.14.16", default-features = false }
 
 # imds
 aws-http = { path = "../../sdk/build/aws-sdk/sdk/aws-http", optional = true }
